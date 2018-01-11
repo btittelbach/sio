@@ -63,7 +63,7 @@ func Open(dev string, rate uint32) (p *Port, err error) {
 			f.Close()
 		}
 	}()
-	f, err = os.OpenFile(dev, syscall.O_RDWR|syscall.O_NOCTTY|syscall.O_NDELAY, 0666)
+	f, err = os.OpenFile(dev, syscall.O_RDWR|syscall.O_NOCTTY, 0666)
 	if err != nil {
 		return nil, err
 	}
