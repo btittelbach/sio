@@ -72,7 +72,7 @@ func Open(dev string, rate uint32) (p *Port, err error) {
 	t := syscall.Termios{
 		Iflag:  syscall.IGNPAR,
 		Cflag:  syscall.CS8 | syscall.CREAD | syscall.CLOCAL | rate,
-		Cc:     [32]uint8{syscall.VMIN: 1},
+		Cc:     [32]uint8{syscall.VMIN: 1}, //don't send EOF on zero read, which is bad for LineScanner and immedately send us each character
 		Ispeed: rate,
 		Ospeed: rate,
 	}
